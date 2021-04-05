@@ -3,4 +3,29 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
+    <servlet>
+        <servlet-name>LoadItemsServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet.LoadItemsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet.AddServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet.UpdateServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UpdateServlet</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadItemsServlet</servlet-name>
+        <url-pattern>/load</url-pattern>
+    </servlet-mapping>
 </web-app>
