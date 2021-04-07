@@ -7,8 +7,9 @@
 * JavaScript (jQuery, Ajax), HTML
 * Hibernate
 * PostgreSQL
-* Travis CI
 * Maven
+* Apache Tomcat
+* Travis CI, CheckStyle
 
 ## Интрефейс приложения
 ### Основаня страница
