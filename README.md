@@ -7,12 +7,25 @@
 * JavaScript (jQuery, Ajax), HTML
 * Hibernate
 * PostgreSQL
+* Log4j, Sl4J
 * Maven
 * Apache Tomcat
 * Travis CI, CheckStyle
 
 ## Интрефейс приложения
-### Основаня страница
+### Страница авторизации
+![ScreenShot](images/LoginPage.png)
+### Необходимо ввести данные
+![ScreenShot](images/LoginAlert.png)
+### Необходимо ввести корректные данные
+![ScreenShot](images/InvalidInput.png)
+### Страница регистрации
+![ScreenShot](images/RegPage.png)
+### Необходимо ввести данные
+![ScreenShot](images/RegAlert.png)
+### Необходимо ввести корректные данные 
+![ScreenShot](images/RegInvalidInput.png)
+### Основаня страница после логина
 ![ScreenShot](images/MainPage.png)
 ### Необходимо ввести описание задачи
 ![ScreenShot](images/AddAlert.png)

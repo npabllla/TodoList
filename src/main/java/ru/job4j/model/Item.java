@@ -14,16 +14,22 @@ public class Item {
     private Timestamp created;
     private String status;
 
-    public Item(int id, String description, Timestamp created, String status) {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Item(int id, String description, Timestamp created, String status, User user) {
         this.id = id;
         this.description = description;
         this.created = created;
         this.status = status;
+        this.user = user;
     }
-    public Item(String description, Timestamp created, String status) {
+    public Item(String description, Timestamp created, String status, User user) {
         this.description = description;
         this.created = created;
         this.status = status;
+        this.user = user;
     }
 
     public Item() {
@@ -60,6 +66,14 @@ public class Item {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

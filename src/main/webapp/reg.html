@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#goReg').click(function () {
+                event.preventDefault();
+                if (validate()) {
+                    const req = $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/todo/reg",
+                        data: {name: $('#name').val(), email: $('#email').val(), password: $('#password').val()},
+                    })
+                    req.done(function (data) {
+                        if (data !== '') {
+                            $('#alreadyExist').html(data)
+                        } else {
+                            window.location.href = "http://localhost:8080/todo/index.html"
+                        }
+                    })
+                }
+            })
+        });
+
+        function validate() {
+            let elements =[$('#name'), $('#email'), $('#password')]
+            for (let i = 0; i < elements.length; i++) {
+                if (elements[i].val() === "") {
+                    alert(elements[i].attr("placeholder"));
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+    <style>
+        .card {
+            margin: 0 auto;
+            width: 500px;
+            height: 380px
+        }
+        .form-group {
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+<div class="container pt-3">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h4>Регистрация</h4>
+            </div>
+            <div class="card-body">
+                <form class="form">
+                    <div class="form-group">
+                        <h6>Имя</h6>
+                        <input type="text" class="form-control" id="name" placeholder="Введите ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <h6>Почта</h6>
+                        <input type="text" class="form-control" id="email" placeholder="Введите вашу почту">
+                    </div>
+                    <div class="form-group">
+                        <h6>Пароль</h6>
+                        <input type="text" class="form-control" id="password" placeholder="Введите ваш пароль">
+                    </div>
+                    <button type="submit" class="btn btn-primary floated" id="goReg">Зарегистрироваться</button>
+                    <label id="alreadyExist" style="color: red">
+
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

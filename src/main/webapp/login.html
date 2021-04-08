@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#login').click(function () {
+                event.preventDefault();
+                if (validate()) {
+                    const req = $.ajax({
+                        type: "POST",
+                        url: "http://localhost:8080/todo/auth",
+                        data: {email: $('#email').val(), password: $('#password').val()},
+                    })
+                    req.done(function (data) {
+                        if (data !== '') {
+                            $('#wrongUser').html(data)
+                        } else {
+                            window.location.href = "http://localhost:8080/todo/index.html"
+                        }
+                    })
+                }
+            })
+            $('#reg').click(function () {
+                event.preventDefault();
+                window.location.href = "http://localhost:8080/todo/reg.html"
+            })
+        });
+
+        function validate() {
+            let result = true;
+            if ($('#name').val() === '' || $('#password').val() === '') {
+                alert("Необходимо ввести почту и пароль")
+                result = false;
+            }
+            return result;
+        }
+    </script>
+    <style>
+        .card {
+            margin: 0 auto;
+            width: 450px;
+            height: 300px
+        }
+        .form-group {
+            width: 250px;
+        }
+    </style>
+</head>
+<body>
+<div class="container pt-3">
+    <div class="row">
+        <div class="card">
+            <div class="card-header">
+                <h4>Авторизация</h4>
+            </div>
+            <div class="card-body">
+                <form class="form">
+                    <div class="form-group">
+                        <h6>Почта</h6>
+                        <input type="text" class="form-control" id="email" placeholder="Введите почту">
+                    </div>
+                    <div class="form-group">
+                        <h6>Пароль</h6>
+                        <input type="text" class="form-control" id="password" placeholder="Введите пароль">
+                    </div>
+                    <button type="submit" id='login' class="btn btn-primary floated">Войти</button>
+                    <button type="submit" id='reg' class="btn btn-primary floated">Регистрация</button>
+                    <label id="wrongUser" style="color: red">
+
+                    </label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

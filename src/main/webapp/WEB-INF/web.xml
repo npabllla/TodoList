@@ -15,7 +15,23 @@
         <servlet-name>UpdateServlet</servlet-name>
         <servlet-class>ru.job4j.servlet.UpdateServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AuthServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet.AuthServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet.RegServlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>RegServlet</servlet-name>
+        <url-pattern>/reg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthServlet</servlet-name>
+        <url-pattern>/auth</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateServlet</servlet-name>
         <url-pattern>/update</url-pattern>
@@ -28,4 +44,13 @@
         <servlet-name>LoadItemsServlet</servlet-name>
         <url-pattern>/load</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>ru.job4j.filter.AuthFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>*.html</url-pattern>
+    </filter-mapping>
 </web-app>
