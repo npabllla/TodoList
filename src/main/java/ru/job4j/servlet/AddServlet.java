@@ -16,6 +16,7 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
+        String[] categoriesIds = req.getParameter("categoryIds").split(",");
         HttpSession session = req.getSession();
         Item item = new Item(
                 req.getParameter("description"),
@@ -23,6 +24,6 @@ public class AddServlet extends HttpServlet {
                 "Not done",
                 (User) session.getAttribute("user")
         );
-        HbmStore.instOf().save(item);
+        HbmStore.instOf().save(item, categoriesIds);
     }
 }

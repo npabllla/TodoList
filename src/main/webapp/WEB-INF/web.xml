@@ -5,7 +5,7 @@
 <web-app>
     <servlet>
         <servlet-name>LoadItemsServlet</servlet-name>
-        <servlet-class>ru.job4j.servlet.LoadItemsServlet</servlet-class>
+        <servlet-class>ru.job4j.servlet.LoadServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddServlet</servlet-name>
@@ -23,7 +23,15 @@
         <servlet-name>RegServlet</servlet-name>
         <servlet-class>ru.job4j.servlet.RegServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CategoriesServlet</servlet-name>
+        <servlet-class>ru.job4j.servlet.CategoriesServlet</servlet-class>
+    </servlet>
 
+    <servlet-mapping>
+        <servlet-name>CategoriesServlet</servlet-name>
+        <url-pattern>/categories</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegServlet</servlet-name>
         <url-pattern>/reg</url-pattern>
@@ -44,6 +52,7 @@
         <servlet-name>LoadItemsServlet</servlet-name>
         <url-pattern>/load</url-pattern>
     </servlet-mapping>
+
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>ru.job4j.filter.AuthFilter</filter-class>

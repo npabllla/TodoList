@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.job4j.model.Category;
 import ru.job4j.model.Item;
 import ru.job4j.model.User;
 
@@ -35,8 +36,15 @@ public class HbmStore implements Store {
     }
 
     @Override
-    public void save(Item item) {
-        transaction(session -> session.save(item));
+    public void save(Item item, String[] cIds) {
+        transaction(session -> {
+            for (String id : cIds) {
+                Category  category = session.find(Category.class, Integer.parseInt(id));
+                item.addCategory(category);
+            }
+            session.save(item);
+            return null;
+        });
     }
 
     @Override
@@ -64,6 +72,14 @@ public class HbmStore implements Store {
                     return query.getResultList();
                 }
         );
+    }
+
+    @Override
+    public Collection<Category> getAllCategories() {
+        return (Collection<Category>) transaction(session -> {
+            final Query query = session.createQuery("from Category");
+            return query.getResultList();
+        });
     }
 
     @Override

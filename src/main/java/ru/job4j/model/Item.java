@@ -2,6 +2,8 @@ package ru.job4j.model;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,13 +20,18 @@ public class Item {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public Item(int id, String description, Timestamp created, String status, User user) {
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private List<Category> categories = new ArrayList<>();
+
+    public Item(int id, String description, Timestamp created, String status, User user, List<Category> categories) {
         this.id = id;
         this.description = description;
         this.created = created;
         this.status = status;
         this.user = user;
+        this.categories = categories;
     }
+
     public Item(String description, Timestamp created, String status, User user) {
         this.description = description;
         this.created = created;
@@ -34,6 +41,10 @@ public class Item {
 
     public Item() {
 
+    }
+
+    public void addCategory(Category category) {
+        this.categories.add(category);
     }
 
     public int getId() {
@@ -74,6 +85,14 @@ public class Item {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
     }
 
     @Override

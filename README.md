@@ -27,7 +27,7 @@
 ![ScreenShot](images/RegInvalidInput.png)
 ### Основаня страница после логина
 ![ScreenShot](images/MainPage.png)
-### Необходимо ввести описание задачи
+### Необходимо ввести описание задачи и выбрать категории
 ![ScreenShot](images/AddAlert.png)
 ### Добавим новую задачу
 ![ScreenShot](images/AddTask.png)
