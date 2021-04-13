@@ -16,3 +16,5 @@ create table categories(
     id serial primary key,
     name text not null
 );
+
+alter table items add column user_id int references users(id)
