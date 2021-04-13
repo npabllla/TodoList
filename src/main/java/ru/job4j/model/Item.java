@@ -1,8 +1,8 @@
 package ru.job4j.model;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,8 +12,12 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String description;
-    private Timestamp created;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created;
+
     private String status;
 
     @ManyToOne
@@ -23,7 +27,7 @@ public class Item {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
     private List<Category> categories = new ArrayList<>();
 
-    public Item(int id, String description, Timestamp created, String status, User user, List<Category> categories) {
+    public Item(int id, String description, Date created, String status, User user, List<Category> categories) {
         this.id = id;
         this.description = description;
         this.created = created;
@@ -32,7 +36,7 @@ public class Item {
         this.categories = categories;
     }
 
-    public Item(String description, Timestamp created, String status, User user) {
+    public Item(String description, Date created, String status, User user) {
         this.description = description;
         this.created = created;
         this.status = status;
@@ -63,11 +67,11 @@ public class Item {
         this.description = description;
     }
 
-    public Timestamp getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Timestamp created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 

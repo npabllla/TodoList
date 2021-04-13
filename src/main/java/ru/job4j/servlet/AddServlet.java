@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class AddServlet extends HttpServlet {
     @Override
@@ -20,7 +20,7 @@ public class AddServlet extends HttpServlet {
         HttpSession session = req.getSession();
         Item item = new Item(
                 req.getParameter("description"),
-                new Timestamp(System.currentTimeMillis()),
+                new Date(System.currentTimeMillis()),
                 "Not done",
                 (User) session.getAttribute("user")
         );
